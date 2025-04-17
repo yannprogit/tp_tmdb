@@ -1,18 +1,24 @@
 <h1>🍿 Top rated series</h1>
 
 <div *ngIf="series.length > 0; else loading">
-    <div class="serie-grid">
-      <div *ngFor="let serie of series" class="serie-card">
-        <img [src]="'https://image.tmdb.org/t/p/w500/' + serie.poster_path" alt="{{ serie.title }}">
-        <div class="serie-info">
-          <h3>{{ serie.title }}</h3>
-          <p>{{ serie.overview }}</p>
-          <small>⭐ {{ serie.vote_average }} | 📅 {{ serie.release_date }}</small>
-        </div>
+  <div class="serie-grid">
+    <div *ngFor="let serie of series" class="serie-card">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500/' + serie.poster_path"
+        alt="{{ serie.title }}"
+      />
+      <div class="serie-info">
+        <h3>{{ serie.title }}</h3>
+        <p>{{ serie.overview }}</p>
+        <small>⭐ {{ serie.vote_average }} | 📅 {{ serie.release_date }}</small>
       </div>
+      <button class="button" (click)="AddFavorite(serie)">
+        Enregistrer dans mes favoris
+      </button>
     </div>
   </div>
-  
-  <ng-template #loading>
-    <p>Loading...</p>
-  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  styleUrls: ['./movie-list.component.css'],
 })
 export class MovieListComponent implements OnInit {
   movies: any[] = [];
@@ -17,7 +17,10 @@ export class MovieListComponent implements OnInit {
   selectedGenreId: number | null = null;
   filteredMovies: any[] = [];
 
-  constructor(private movieService: MoviesService, private genreService: GenresService) {}
+  constructor(
+    private movieService: MoviesService,
+    private genreService: GenresService
+  ) {}
 
   ngOnInit(): void {
     this.loadMovies();
@@ -46,5 +49,9 @@ export class MovieListComponent implements OnInit {
     this.filteredMovies = this.movies.filter((movie) =>
       movie.genre_ids.includes(this.selectedGenreId!)
     );
+  }
+
+  AddFavorite(serie: any): void {
+    this.movieService.addFavorite(serie);
   }
 }

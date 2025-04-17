@@ -1,30 +1,35 @@
 <h1>🎬 Now showing</h1>
-
-<br/><br/>
+<br /><br />
 
 <select [(ngModel)]="selectedGenreId">
   <option [ngValue]="null">-- All genres --</option>
   @for (genre of genres; track genre.id) {
-    <option [ngValue]="genre.id">{{ genre.name }}</option>
+  <option [ngValue]="genre.id">{{ genre.name }}</option>
   }
 </select>
 <button (click)="filterMoviesByGenre()">Filter</button>
 
-<br/><br/>
+<br /><br />
 
 <div *ngIf="movies.length > 0; else loading">
-    <div class="movie-grid">
-      <div *ngFor="let movie of filteredMovies" class="movie-card">
-        <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" alt="{{ movie.title }}">
-        <div class="movie-info">
-          <h3>{{ movie.title }}</h3>
-          <p>{{ movie.overview }}</p>
-          <small>⭐ {{ movie.vote_average }} | 📅 {{ movie.release_date }}</small>
-        </div>
+  <div class="movie-grid">
+    <div *ngFor="let movie of filteredMovies" class="movie-card">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path"
+        alt="{{ movie.title }}"
+      />
+      <div class="movie-info">
+        <h3>{{ movie.title }}</h3>
+        <p>{{ movie.overview }}</p>
+        <small>⭐ {{ movie.vote_average }} | 📅 {{ movie.release_date }}</small>
       </div>
+      <button class="button" (click)="AddFavorite(movie)">
+        Enregistrer dans mes favoris
+      </button>
     </div>
   </div>
-  
-  <ng-template #loading>
-    <p>Loading...</p>
-  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

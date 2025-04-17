@@ -7,7 +7,11 @@ import { SeriesService } from '../../services/series.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './serie-list.component.html',
+<<<<<<< Updated upstream
   styleUrl: './serie-list.component.css'
+=======
+  styleUrl: './serie-list.component.css',
+>>>>>>> Stashed changes
 })
 export class SerieListComponent {
   series: any[] = [];
@@ -22,5 +26,9 @@ export class SerieListComponent {
     this.serieService.getBestSeries().subscribe((response: any) => {
       this.series = response.results;
     });
+  }  
+  
+  AddFavorite(serie: any): void {
+    this.serieService.addFavorite(serie);
   }
 }
